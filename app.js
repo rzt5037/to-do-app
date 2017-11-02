@@ -12,6 +12,10 @@ function onReady(){
 
     let checkbox = document.createElement('input');
 
+    let delButton = document.createElement('button');
+
+    delButton.innerText = "Delete";
+
     checkbox.type = "checkbox";
 
     newLi.textContent = title;
@@ -20,9 +24,17 @@ function onReady(){
 
     toDoList.appendChild(newLi);
 
+    newLi.appendChild(delButton);
+
     newToDoText.value = "";
+
+    delButton.addEventListener('click', event => {
+      toDoList.removeChild(newLi);
+    });
   });
 }
+
+
 
 window.onload = function(){
   onReady();
