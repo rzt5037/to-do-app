@@ -1,5 +1,10 @@
 function onReady(){
-  var toDos = [];
+  //var toDos = [];
+  if(localStorage.getItem("data") != null){
+    var toDos = JSON.parse(localStorage.getItem("data"));
+  }else{
+    var toDos = [];
+  }
   const addToDoForm = document.getElementById('addToDoForm');
   let idNum = 0;
 
@@ -43,7 +48,12 @@ function onReady(){
         toDos = newArr;
         renderTheUI();
       });
+      checkbox.addEventListener('click', event => {
+        toDos.complete = !toDos.complete;
+        renderTheUI();
+      });
     });
+    localStorage.setItem("data",JSON.stringify(toDos));
   }
 
   addToDoForm.addEventListener('submit', event => {
